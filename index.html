@@ -119,7 +119,7 @@
       color: var(--purple-dark);
     }
 
-    input, select {
+    input {
       width: 100%;
       padding: 12px;
       border: 2px solid #ddd;
@@ -129,7 +129,7 @@
       transition: border-color 0.3s;
     }
 
-    input:focus, select:focus {
+    input:focus {
       border-color: var(--purple-main);
     }
 
@@ -173,13 +173,13 @@
     </div>
 
     <div class="tagline">
-      Două jocuri. Două tematici.
+      Ești gata de distracție? Înscrie-te mai jos!
     </div>
 
     <div class="games-info">
       <div class="game-card">
         <h3>LETTER MADNESS</h3>
-        <p>Pune-ți mintea la contribuție, descifrează mesajele și găsește indiciile ascunse.</p>
+        <p>Pune-ți mintea la contribuție, descifrează mesajele și găsește indiciileascunse.</p>
       </div>
       <div class="game-card lights">
         <h3>LIGHTS OUT</h3>
@@ -190,28 +190,18 @@
     <!-- FORMULAR ÎNSCRIERE -->
     <form id="signupForm" onsubmit="sendToWhatsApp(event)">
       <div class="form-group">
-        <label for="childName">Nume și Prenume Copil *</label>
-        <input type="text" id="childName" required placeholder="ex: Andrei Popescu">
+        <label for="participantName">Nume și Prenume Participant *</label>
+        <input type="text" id="participantName" required placeholder="ex: Andrei Popescu">
       </div>
 
       <div class="form-group">
-        <label for="childAge">Vârstă Copil *</label>
-        <input type="number" id="childAge" min="4" max="18" required placeholder="ex: 9">
+        <label for="participantAge">Vârstă Participant *</label>
+        <input type="number" id="participantAge" min="4" max="99" required placeholder="ex: 10">
       </div>
 
       <div class="form-group">
-        <label for="gameChoice">Alege Jocul *</label>
-        <select id="gameChoice" required>
-          <option value="">-- Selectează opțiunea --</option>
-          <option value="Letter Madness">Letter Madness</option>
-          <option value="Lights Out">Lights Out</option>
-          <option value="Ambele Jocuri">Ambele Jocuri</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="parentPhone">Număr Telefon Părinte *</label>
-        <input type="tel" id="parentPhone" required placeholder="ex: 0712345678">
+        <label for="participantPhone">Număr Telefon Participant *</label>
+        <input type="tel" id="participantPhone" required placeholder="ex: 0712345678">
       </div>
 
       <button type="submit" class="btn-submit">
@@ -231,20 +221,18 @@
       // --- CONFIGURARE NUMĂR TELEFON ORGANIZATOR ---
       // Schimbă numărul de mai jos cu numărul TĂU de telefon!
       // Format: 40 + numărul fără primul 0 (Exemplu: 40712345678)
-      const myPhoneNumber = "40785799923"; 
+      const myPhoneNumber = "40700000000"; 
 
       // Preluare date din formular
-      const name = document.getElementById('childName').value;
-      const age = document.getElementById('childAge').value;
-      const game = document.getElementById('gameChoice').value;
-      const parentPhone = document.getElementById('parentPhone').value;
+      const name = document.getElementById('participantName').value;
+      const age = document.getElementById('participantAge').value;
+      const phone = document.getElementById('participantPhone').value;
 
       // Creare text mesaj
       const message = `🎯 *ÎNSCRIERE NOUĂ TREASURE HUNT* 🎯\n\n` +
-                      `👤 *Nume copil:* ${name}\n` +
+                      `👤 *Nume participant:* ${name}\n` +
                       `🎂 *Vârstă:* ${age} ani\n` +
-                      `🎮 *Joc ales:* ${game}\n` +
-                      `📞 *Tel. părinte:* ${parentPhone}`;
+                      `📞 *Telefon:* ${phone}`;
 
       // Encodare text pentru URL
       const encodedMessage = encodeURIComponent(message);
