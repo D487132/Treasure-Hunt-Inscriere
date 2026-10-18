@@ -1,414 +1,261 @@
-
 <!DOCTYPE html>
-<html lang="ro" class="dark">
+<html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formular de Înscriere Event</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0f5ff',
-                            100: '#e5edff',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                        }
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-15px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Font Inter & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        /* Glassmorphism styling */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-        .dark .glass-panel {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        .dark .glass-card {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treasure Hunt - Înscrieri</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple-dark: #3d2c5e;
+      --purple-main: #5c3282;
+      --magenta-dark: #8b004d;
+      --magenta-bright: #b80068;
+      --orange-accent: #d96b27;
+      --bg-color: #fbf9f6;
+      --text-dark: #231b30;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      padding: 20px 10px;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      background: white;
+      border-radius: 24px;
+      padding: 25px 20px;
+      box-shadow: 0 10px 30px rgba(61, 44, 94, 0.15);
+      border: 3px solid var(--purple-dark);
+      position: relative;
+    }
+
+    .header-title {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header-title h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.5rem;
+      color: var(--purple-dark);
+      letter-spacing: 2px;
+      line-height: 1;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 0px var(--magenta-dark);
+    }
+
+    .header-title .subtitle {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.1rem;
+      color: var(--magenta-bright);
+      margin-top: 5px;
+    }
+
+    .tagline {
+      text-align: center;
+      font-weight: 700;
+      color: var(--purple-main);
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      background: #f0e6f5;
+      padding: 10px;
+      border-radius: 12px;
+    }
+
+    .games-info {
+      margin-bottom: 25px;
+    }
+
+    .game-card {
+      background: #fdf6fa;
+      border-left: 5px solid var(--orange-accent);
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .game-card.lights {
+      border-left-color: var(--purple-main);
+    }
+
+    .game-card h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.1rem;
+      color: var(--orange-accent);
+    }
+
+    .game-card.lights h3 {
+      color: var(--purple-main);
+    }
+
+    .game-card p {
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      margin-top: 3px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--purple-dark);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--purple-main);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: #25D366; /* Culoare WhatsApp */
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 14px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: #20ba5a;
+      transform: translateY(-2px);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 25px;
+      font-weight: 700;
+      color: var(--magenta-dark);
+    }
+  </style>
 </head>
-<body class="min-h-screen bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300 flex flex-col justify-between relative overflow-x-hidden selection:bg-brand-500 selection:text-white">
+<body>
 
-    <!-- Decorative Background Lights -->
-    <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-purple-500/20 dark:bg-purple-600/20 blur-[120px] pointer-events-none animate-float"></div>
-    <div class="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-500/20 dark:bg-indigo-600/20 blur-[120px] pointer-events-none animate-float" style="animation-delay: -3s;"></div>
-
-    <!-- Header Controls -->
-    <header class="w-full max-w-5xl mx-auto p-4 sm:p-6 flex justify-between items-center z-10">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/30">
-                <i class="fa-solid fa-sparkles text-lg"></i>
-            </div>
-            <span class="font-bold text-xl tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">EventSpace</span>
-        </div>
-
-        <!-- Dark/Light Theme Toggle -->
-        <button id="themeToggle" aria-label="Comută tema" class="w-11 h-11 rounded-xl glass-card flex items-center justify-center text-slate-700 dark:text-slate-200 hover:scale-105 active:scale-95 transition-all shadow-sm">
-            <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
-        </button>
-    </header>
-
-    <!-- Main Content Area -->
-    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 z-10 w-full">
-        <div class="w-full max-w-lg">
-            
-            <!-- Registration Card -->
-            <div class="glass-panel rounded-3xl p-6 sm:p-10 shadow-2xl transition-all duration-300 relative overflow-hidden">
-                <!-- Top Gradient Accent Bar -->
-                <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
-
-                <!-- Form Header -->
-                <div class="mb-8 text-center">
-                    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2 text-slate-900 dark:text-white">
-                        Formular de Înscriere
-                    </h1>
-                    <p class="text-sm text-slate-500 dark:text-slate-400">
-                        Completează datele de mai jos pentru a-ți rezerva locul la eveniment.
-                    </p>
-                </div>
-
-                <!-- Registration Form -->
-                <form id="registrationForm" class="space-y-6" novalidate>
-                    
-                    <!-- 1. Nume și prenume -->
-                    <div class="space-y-2">
-                        <label for="fullName" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
-                            <i class="fa-regular fa-user mr-1.5 text-indigo-500"></i>Nume și prenume participant
-                        </label>
-                        <div class="relative">
-                            <input 
-                                type="text" 
-                                id="fullName" 
-                                name="fullName"
-                                placeholder="ex. Andrei Popescu"
-                                class="w-full px-4 py-3.5 rounded-xl bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700/80 focus:border-indigo-500 dark:focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 text-sm font-medium"
-                                required
-                            >
-                            <span class="absolute right-3.5 top-3.5 hidden text-emerald-500" id="fullNameCheck">
-                                <i class="fa-solid fa-circle-check"></i>
-                            </span>
-                        </div>
-                        <p class="text-xs text-rose-500 hidden mt-1 flex items-center gap-1" id="fullNameError">
-                            <i class="fa-solid fa-circle-exclamation"></i> Te rugăm să introduci numele complet (minim 3 caractere).
-                        </p>
-                    </div>
-
-                    <!-- 2. Vârstă participant -->
-                    <div class="space-y-2">
-                        <label for="age" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
-                            <i class="fa-regular fa-calendar-days mr-1.5 text-indigo-500"></i>Vârstă participant
-                        </label>
-                        <div class="relative">
-                            <input 
-                                type="number" 
-                                id="age" 
-                                name="age"
-                                min="1" 
-                                max="120"
-                                placeholder="ex. 18"
-                                class="w-full px-4 py-3.5 rounded-xl bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700/80 focus:border-indigo-500 dark:focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 text-sm font-medium"
-                                required
-                            >
-                            <span class="absolute right-3.5 top-3.5 hidden text-emerald-500" id="ageCheck">
-                                <i class="fa-solid fa-circle-check"></i>
-                            </span>
-                        </div>
-                        <p class="text-xs text-rose-500 hidden mt-1 flex items-center gap-1" id="ageError">
-                            <i class="fa-solid fa-circle-exclamation"></i> Te rugăm să introduci o vârstă validă (între 1 și 120 de ani).
-                        </p>
-                    </div>
-
-                    <!-- 3. Cont de Instagram -->
-                    <div class="space-y-2">
-                        <label for="instagram" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
-                            <i class="fa-brands fa-instagram mr-1.5 text-pink-500"></i>Cont de Instagram participant
-                        </label>
-                        <div class="relative">
-                            <input 
-                                type="text" 
-                                id="instagram" 
-                                name="instagram"
-                                placeholder="@utilizator"
-                                class="w-full px-4 py-3.5 rounded-xl bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700/80 focus:border-indigo-500 dark:focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 text-sm font-medium"
-                                required
-                            >
-                            <span class="absolute right-3.5 top-3.5 hidden text-emerald-500" id="instagramCheck">
-                                <i class="fa-solid fa-circle-check"></i>
-                            </span>
-                        </div>
-                        <p class="text-xs text-rose-500 hidden mt-1 flex items-center gap-1" id="instagramError">
-                            <i class="fa-solid fa-circle-exclamation"></i> Introdu un nume de utilizator valid (ex. @utilizator sau utilizator).
-                        </p>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <button 
-                        type="submit" 
-                        id="submitBtn"
-                        class="w-full py-4 px-6 rounded-xl font-semibold text-white bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:opacity-95 focus:ring-4 focus:ring-indigo-500/30 transition-all transform active:scale-[0.98] shadow-lg shadow-indigo-500/25 flex items-center justify-center gap-2 group mt-8"
-                    >
-                        <span>Trimite Înscrierea</span>
-                        <i class="fa-solid fa-arrow-right text-sm transition-transform group-hover:translate-x-1" id="btnIcon"></i>
-                    </button>
-                </form>
-
-            </div>
-        </div>
-    </main>
-
-    <!-- Confirmation Modal -->
-    <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="glass-panel w-full max-w-md rounded-3xl p-6 sm:p-8 shadow-2xl scale-95 transition-transform duration-300 transform id='modalCard' border border-white/20 dark:border-slate-700">
-            
-            <div class="text-center">
-                <!-- Success Icon -->
-                <div class="w-16 h-16 rounded-2xl bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-500 mx-auto flex items-center justify-center text-3xl mb-4 border border-emerald-500/30">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-
-                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">Înscriere Confirmată!</h2>
-                <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Datele tale au fost înregistrate cu succes.</p>
-
-                <!-- Displayed Details Card -->
-                <div class="glass-card rounded-2xl p-4 text-left space-y-3 mb-6 border border-slate-200/50 dark:border-slate-700/50">
-                    <div class="flex justify-between items-center pb-2 border-b border-slate-200/60 dark:border-slate-800">
-                        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Nume Participant:</span>
-                        <span id="confirmName" class="text-sm font-semibold text-slate-800 dark:text-slate-100"></span>
-                    </div>
-                    <div class="flex justify-between items-center pb-2 border-b border-slate-200/60 dark:border-slate-800">
-                        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Vârstă:</span>
-                        <span id="confirmAge" class="text-sm font-semibold text-slate-800 dark:text-slate-100"></span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Instagram:</span>
-                        <span id="confirmInstagram" class="text-sm font-semibold text-pink-500"></span>
-                    </div>
-                </div>
-
-                <!-- Close / Reset Button -->
-                <button 
-                    id="closeModalBtn"
-                    class="w-full py-3.5 rounded-xl font-semibold text-slate-800 dark:text-white bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors"
-                >
-                    Am înțeles / Închide
-                </button>
-            </div>
-
-        </div>
+  <div class="container">
+    <div class="header-title">
+      <h1>TREASURE<br>HUNT</h1>
+      <div class="subtitle">🦇 O singură aventură! 🦇</div>
     </div>
 
-    <!-- Footer -->
-    <footer class="w-full text-center py-4 text-xs text-slate-500 dark:text-slate-500 z-10">
-        &copy; 2026 EventSpace. Toate drepturile rezervate.
-    </footer>
+    <div class="tagline">
+      Două jocuri. Două tematici.
+    </div>
 
-    <!-- JavaScript Logic -->
-    <script>
-        // DOM Elements
-        const themeToggleBtn = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const form = document.getElementById('registrationForm');
-        
-        const fullNameInput = document.getElementById('fullName');
-        const ageInput = document.getElementById('age');
-        const instagramInput = document.getElementById('instagram');
+    <div class="games-info">
+      <div class="game-card">
+        <h3>LETTER MADNESS</h3>
+        <p>Pune-ți mintea la contribuție, descifrează mesajele și găsește indiciile ascunse.</p>
+      </div>
+      <div class="game-card lights">
+        <h3>LIGHTS OUT</h3>
+        <p>Lasă-te ghidat de întuneric, rezolvă provocările și descoperă ce se ascunde în beznă.</p>
+      </div>
+    </div>
 
-        const fullNameError = document.getElementById('fullNameError');
-        const ageError = document.getElementById('ageError');
-        const instagramError = document.getElementById('instagramError');
+    <!-- FORMULAR ÎNSCRIERE -->
+    <form id="signupForm" onsubmit="sendToWhatsApp(event)">
+      <div class="form-group">
+        <label for="childName">Nume și Prenume Copil *</label>
+        <input type="text" id="childName" required placeholder="ex: Andrei Popescu">
+      </div>
 
-        const fullNameCheck = document.getElementById('fullNameCheck');
-        const ageCheck = document.getElementById('ageCheck');
-        const instagramCheck = document.getElementById('instagramCheck');
+      <div class="form-group">
+        <label for="childAge">Vârstă Copil *</label>
+        <input type="number" id="childAge" min="4" max="18" required placeholder="ex: 9">
+      </div>
 
-        const successModal = document.getElementById('successModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
+      <div class="form-group">
+        <label for="gameChoice">Alege Jocul *</label>
+        <select id="gameChoice" required>
+          <option value="">-- Selectează opțiunea --</option>
+          <option value="Letter Madness">Letter Madness</option>
+          <option value="Lights Out">Lights Out</option>
+          <option value="Ambele Jocuri">Ambele Jocuri</option>
+        </select>
+      </div>
 
-        const confirmName = document.getElementById('confirmName');
-        const confirmAge = document.getElementById('confirmAge');
-        const confirmInstagram = document.getElementById('confirmInstagram');
+      <div class="form-group">
+        <label for="parentPhone">Număr Telefon Părinte *</label>
+        <input type="tel" id="parentPhone" required placeholder="ex: 0712345678">
+      </div>
 
-        const submitBtn = document.getElementById('submitBtn');
+      <button type="submit" class="btn-submit">
+        <span>Trimite Înscrierea pe WhatsApp</span>
+      </button>
+    </form>
 
-        // Theme Toggle Logic
-        themeToggleBtn.addEventListener('click', () => {
-            const isDark = document.documentElement.classList.toggle('dark');
-            themeIcon.className = isDark ? 'fa-solid fa-moon text-lg' : 'fa-solid fa-sun text-lg text-amber-500';
-        });
+    <div class="footer">
+      📸 @boogeybots
+    </div>
+  </div>
 
-        // Validation Rules
-        function validateName() {
-            const val = fullNameInput.value.trim();
-            if (val.length >= 3) {
-                fullNameError.classList.add('hidden');
-                fullNameCheck.classList.remove('hidden');
-                fullNameInput.classList.remove('border-rose-500');
-                return true;
-            } else {
-                if (val.length > 0) {
-                    fullNameError.classList.remove('hidden');
-                } else {
-                    fullNameError.classList.add('hidden');
-                }
-                fullNameCheck.classList.add('hidden');
-                return false;
-            }
-        }
+  <script>
+    function sendToWhatsApp(event) {
+      event.preventDefault();
 
-        function validateAge() {
-            const ageVal = parseInt(ageInput.value, 10);
-            if (!isNaN(ageVal) && ageVal >= 1 && ageVal <= 120) {
-                ageError.classList.add('hidden');
-                ageCheck.classList.remove('hidden');
-                ageInput.classList.remove('border-rose-500');
-                return true;
-            } else {
-                if (ageInput.value.trim() !== '') {
-                    ageError.classList.remove('hidden');
-                } else {
-                    ageError.classList.add('hidden');
-                }
-                ageCheck.classList.add('hidden');
-                return false;
-            }
-        }
+      // --- CONFIGURARE NUMĂR TELEFON ORGANIZATOR ---
+      // Schimbă numărul de mai jos cu numărul TĂU de telefon!
+      // Format: 40 + numărul fără primul 0 (Exemplu: 40712345678)
+      const myPhoneNumber = "40785799923"; 
 
-        function validateInstagram() {
-            let val = instagramInput.value.trim();
-            // Basic handle check (letters, numbers, underscores, dots)
-            const handleRegex = /^@?[a-zA-Z0-9._]{1,30}$/;
-            
-            if (val.length > 0 && handleRegex.test(val)) {
-                instagramError.classList.add('hidden');
-                instagramCheck.classList.remove('hidden');
-                instagramInput.classList.remove('border-rose-500');
-                return true;
-            } else {
-                if (val.length > 0) {
-                    instagramError.classList.remove('hidden');
-                } else {
-                    instagramError.classList.add('hidden');
-                }
-                instagramCheck.classList.add('hidden');
-                return false;
-            }
-        }
+      // Preluare date din formular
+      const name = document.getElementById('childName').value;
+      const age = document.getElementById('childAge').value;
+      const game = document.getElementById('gameChoice').value;
+      const parentPhone = document.getElementById('parentPhone').value;
 
-        // Live validation listeners
-        fullNameInput.addEventListener('input', validateName);
-        ageInput.addEventListener('input', validateAge);
-        
-        instagramInput.addEventListener('input', () => {
-            let val = instagramInput.value.trim();
-            // Auto-format handle with @ if typed without
-            if (val.length > 0 && !val.startsWith('@')) {
-                instagramInput.value = '@' + val;
-            }
-            validateInstagram();
-        });
+      // Creare text mesaj
+      const message = `🎯 *ÎNSCRIERE NOUĂ TREASURE HUNT* 🎯\n\n` +
+                      `👤 *Nume copil:* ${name}\n` +
+                      `🎂 *Vârstă:* ${age} ani\n` +
+                      `🎮 *Joc ales:* ${game}\n` +
+                      `📞 *Tel. părinte:* ${parentPhone}`;
 
-        // Form Submit Handler
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
+      // Encodare text pentru URL
+      const encodedMessage = encodeURIComponent(message);
 
-            const isNameValid = validateName();
-            const isAgeValid = validateAge();
-            const isInstaValid = validateInstagram();
+      // Generare link WhatsApp
+      const whatsappUrl = `https://wa.me/${myPhoneNumber}?text=${encodedMessage}`;
 
-            // Highlight errors if any field is invalid
-            if (!isNameValid) {
-                fullNameError.classList.remove('hidden');
-                fullNameInput.classList.add('border-rose-500');
-            }
-            if (!isAgeValid) {
-                ageError.classList.remove('hidden');
-                ageInput.classList.add('border-rose-500');
-            }
-            if (!isInstaValid) {
-                instagramError.classList.remove('hidden');
-                instagramInput.classList.add('border-rose-500');
-            }
+      // Deschidere WhatsApp
+      window.open(whatsappUrl, '_blank');
+    }
+  </script>
 
-            if (isNameValid && isAgeValid && isInstaValid) {
-                // Show button loading state
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Processing...`;
-
-                setTimeout(() => {
-                    // Populate modal confirmation
-                    confirmName.textContent = fullNameInput.value.trim();
-                    confirmAge.textContent = `${ageInput.value.trim()} ani`;
-                    confirmInstagram.textContent = instagramInput.value.trim();
-
-                    // Display Modal
-                    successModal.classList.remove('opacity-0', 'pointer-events-none');
-                    
-                    // Reset Button State
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = `<span>Trimite Înscrierea</span><i class="fa-solid fa-arrow-right text-sm transition-transform group-hover:translate-x-1"></i>`;
-                }, 600);
-            }
-        });
-
-        // Close Modal & Reset Form
-        closeModalBtn.addEventListener('click', () => {
-            successModal.classList.add('opacity-0', 'pointer-events-none');
-            form.reset();
-            
-            // Clear checkmarks
-            fullNameCheck.classList.add('hidden');
-            ageCheck.classList.add('hidden');
-            instagramCheck.classList.add('hidden');
-        });
-
-        // Close modal when clicking backdrop
-        successModal.addEventListener('click', (e) => {
-            if (e.target === successModal) {
-                closeModalBtn.click();
-            }
-        });
-    </script>
 </body>
 </html>
